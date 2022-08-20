@@ -9,18 +9,14 @@
 	overflow-x: hidden;
 }
 
-@keyframes click {
+@keyframes pressed {
 	from { transform: rotate(0deg); }
-	25% { 
-		transform: rotate(-2deg); 
-		transform: scale(1.2);
-	}
-	50% { 
-		transform: rotate(2deg); 
-	}
+	10% { transform: rotate(-1deg); }
+	50% { transform: scale(1.1); }
+	90% { transform: rotate(1deg); }
 	to { 
 		transform: rotate(0deg); 
-		transform: scale(1.2);
+		transform: scale(0);
 	}
 }
 
@@ -65,6 +61,11 @@ div.button {
 	margin: min(1rem, 4vw);
 	height: min(35px, 5vw);
 	width: min(35px, 5vw);
+}
+
+.pressed {
+  animation-name: pressed;
+	animation-duration: 0.1s;
 }
 
 #top-left, #top-right, #bottom-left, #bottom-right {
