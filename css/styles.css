@@ -10,13 +10,18 @@
 }
 
 @keyframes pressed {
-	from { transform: rotate(0deg); }
-	10% { transform: rotate(-1deg); }
-	50% { transform: scale(1.1); }
-	90% { transform: rotate(1deg); }
+	from {
+		/* transform: rotate(0deg); */
+		text-shadow: 0 0 2rem;
+	}
+	/* 10% { transform: rotate(-1deg); } */
+	50% { 
+		transform: scale(1.2); 
+	}
+	/* 90% { transform: rotate(1deg); } */
 	to { 
 		transform: rotate(0deg); 
-		transform: scale(0);
+		/* transform: scale(0); */
 	}
 }
 
@@ -57,10 +62,7 @@ h1, h2, h3 {
 }
 
 div.button {
-	/* background-color: var(--color-red); */
 	margin: min(1rem, 4vw);
-	height: min(35px, 5vw);
-	width: min(35px, 5vw);
 }
 
 .pressed {
@@ -69,28 +71,24 @@ div.button {
 }
 
 #top-left, #top-right, #bottom-left, #bottom-right {
-	width: 0;
-	height: 0;
+	font-size: 12rem;
+	margin: -1rem 1rem -1rem 1rem;
 }
 
 #top-left {
-	border-top: 100px solid var(--color-red);
-	border-right: 100px solid transparent;
+	color: var(--color-red);
 }
 
 #top-right {
-	border-top: 100px solid var(--color-yellow);
-	border-left: 100px solid transparent;
+	color: var(--color-yellow);
 }
 
 #bottom-left {
-	border-bottom: 100px solid var(--color-green);
-	border-right: 100px solid transparent;
+	color: var(--color-green);
 }
 
 #bottom-right {
-	border-bottom: 100px solid var(--color-blue);
-	border-left: 100px solid transparent;
+	color: var(--color-blue);
 }
 
 
