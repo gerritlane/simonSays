@@ -39,7 +39,26 @@ h1, h2, h3 {
 	/* font-size: min(4rem,10vw); */
 	text-align: center;
 	color: var(--color-white);
+	margin-top: 0.5rem;
 	/* text-shadow: 1px 1px var(--color-darkRed); */
+}
+
+button.start-game	{
+	font-size: 1rem;
+	border-style: none;
+	box-shadow: .4rem .4rem .4rem;
+	margin: 0.5rem;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	font-family: 'Play', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button.start-game:hover {
+	cursor: pointer;
+}
+
+button.start-game:active {
+	box-shadow: .1rem .1rem .2rem;
+	transform: translateY(0.2rem);
 }
 
 .gamepad {
@@ -63,6 +82,10 @@ h1, h2, h3 {
 
 div.button {
 	margin: min(1rem, 4vw);
+}
+
+div.button:hover {
+	cursor: pointer;
 }
 
 .pressed {
