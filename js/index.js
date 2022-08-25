@@ -63,7 +63,7 @@ async function checkPlayedButtons() {
 	await sleep(400);
 	let playerCount = playerButtonHistory.length;
 	let simonCount = simonButtonHistory.length;
-	if (playerCount > simonCount) {
+	if (playerCount > simonCount || playerButtonHistory[playerCount-1] !== simonButtonHistory[playerCount-1]) {
 		playAudio('wrong.wav');
 		$('.score').addClass('wrong');
 		newGame();
