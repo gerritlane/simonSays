@@ -16,18 +16,23 @@ let playerButtonHistory = [];
 
 function chooseNextButton () {
 	// Choose next button
-	let nextButton = Math.floor(Math.random() * 4) + 1;
+	let nextButton = Math.floor(Math.random() * 4);
 	simonButtonHistory.push(nextButton);
 }
 
 // Add new button, play back all previously played buttons
-async function playBackButtonHistory () {
-	await sleep(1000);
-	playerButtonHistory = [];
+async function simonsTurn () {
+
+	await sleep(600);
+	$('.score').removeClass('correct');
+	$('.score').removeClass('wrong');
+	playerButtonHistory = []; // New turn implied, clear player history
+	
 	chooseNextButton();
-	let bLen = simonButtonHistory.length;
+	let simonCount = simonButtonHistory.length;
+
 	// Loop through Simon's memory of played buttons
-	for (let i = 0; i < bLen; i++) {
+	for (let i = 0; i < simonCount; i++) {
 		await sleep(1000);
 		// Play the button 
 		$('div.button').each( function(index) {
@@ -36,6 +41,7 @@ async function playBackButtonHistory () {
 			};
 		});
 	};
+	$('.score').text(`${simonCount}`);
 };
 
 // Add on-click to buttons
@@ -52,23 +58,27 @@ function buttonEffects(button, buttonIndex) {
 	button.addClass("pressed");
 };
 
-function checkPlayedButtons() {
+async function checkPlayedButtons() {
 	// TODO: Check if the most recent button played matches the corresponding button in Simon's history
-	if (playerButtonHistory.length > simonButtonHistory.length) {
-		alert('Game Over');
-		simonButtonHistory = [];
-		playerButtonHistory = [];
-		playBackButtonHistory();
+	await sleep(400);
+	let playerCount = playerButtonHistory.length;
+	let simonCount = simonButtonHistory.length;
+	if (playerCount > simonCount) {
+		playAudio('wrong.wav');
+		$('.score').addClass('wrong');
+		newGame();
 	}
-	else if (playerButtonHistory.length === simonButtonHistory.length && playerButtonHistory.every((value, index) => value === simonButtonHistory[index])) {
-		playBackButtonHistory();
+	else if (playerCount === simonCount && playerButtonHistory.every((value, index) => value === simonButtonHistory[index])) {
+		playAudio('correct.wav');
+		$('.score').addClass('correct');
+		simonsTurn();
 	}
 };
 
 // Reset button animation
-$("body").on( "webkitAnimationEnd oanimationend msAnimationEnd animationend",
+$('body').on( 'webkitAnimationEnd oanimationend msAnimationEnd animationend',
 	function(e) {
-		$(e.target).removeClass("pressed");
+		$(e.target).removeClass('pressed');
 	}
 );
 
@@ -80,5 +90,13 @@ function playAudio (audioFile) {
 
 // Temp code for debugging
 $('button.start-game').click( function() {
-	playBackButtonHistory();
+	newGame();
 });
+
+function newGame () {
+	simonButtonHistory = [];
+	playerButtonHistory = [];
+	$('.score').text('0');
+	$('.score').removeClass('correct');
+	simonsTurn();
+}
