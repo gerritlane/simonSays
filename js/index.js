@@ -84,7 +84,7 @@ $('body').on( 'webkitAnimationEnd oanimationend msAnimationEnd animationend',
 
 function playAudio (audioFile) {
 	// Harcoded link due to github pages filesystem structure
-	let audio = new Audio(`./audio/${audioFile}`);
+	let audio = new Audio(`https://github.com/gerritlane/simonSays/blob/main/audio/${audioFile}?raw=true`);
 	audio.play();
 };
 
